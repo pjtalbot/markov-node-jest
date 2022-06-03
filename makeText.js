@@ -7,16 +7,17 @@ const process = require("process");
 
 function generateStr(text) {
     let newMarkov = new markov.MarkovMachine(text)
+    console.log(newMarkov.makeText())
 
 }
 
 function makeText(path) {
-    fs.readFile(path, "utf8", function (err, data) {
+    fs.readFile(path, "utf8", function cb(err, data) {
         if (err) {
             console.error('Unable to read or locate file')
             process.exit(1);
         } else {
-            generateText(data);
+            generateStr(data);
         }
     })
 }
@@ -29,7 +30,7 @@ async function makeURLTxt(url) {
         console.error('Unable to read or locate file')
         process.exit(1)
     }
-    generateText(resp.data)
+    generateStr(resp.data)
 }
 
 // Is there another way to write whats below?
@@ -48,3 +49,5 @@ else {
     console.error(`Unknown Method: ${method}`)
     process.exit(1)
 }
+
+module.exports = { makeText }

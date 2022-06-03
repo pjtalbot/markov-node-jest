@@ -50,7 +50,7 @@ class MarkovMachine {
 
     while (result.length < numWords && key !== null) {
       result.push(key);
-      key = MarkovMachine.choice(this.chains.get(key));
+      key = MarkovMachine.choice(this.chain.get(key));
     }
     return result.join(" ")
   }
